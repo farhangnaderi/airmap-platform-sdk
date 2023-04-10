@@ -3,9 +3,9 @@
 set -ex
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-apt update
+sudo apt update
 export DEBIAN_FRONTEND=noninteractive
-apt install -y \
+sudo apt install -y \
   build-essential \
   curl \
   git \
@@ -18,5 +18,5 @@ apt install -y \
   unzip \
   zlib1g-dev
 
-apt purge -y --auto-remove cmake
+sudo apt purge -y --auto-remove cmake
 $HERE/../build.cmake.sh
