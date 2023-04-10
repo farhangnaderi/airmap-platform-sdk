@@ -11,15 +11,15 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Set up Ubuntu environment
-        run: tools/ubuntu/setup.dev.sh
-             sudo apt-get install -y qt5-default qtbase5-dev && \
-             echo "Qt5_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt5" >> $GITHUB_ENV
+        run: |
+          sudo tools/ubuntu/setup.dev.sh
+          sudo apt-get install -y qt5-default qtbase5-dev
+          echo "Qt5_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt5" >> $GITHUB_ENV
              
       - name: Update git submodules
         run: |
           git submodule sync
           git submodule update --init --recursive
-
       - name: Build and test
         run: |
           ndk=$(tools/android/download-ndk.sh android-ndk-r21d /tmp)
@@ -29,7 +29,6 @@ jobs:
           make -j4
           ctest -V
           sudo make install
-
       - name: Save build artifacts
         uses: actions/upload-artifact@v2
         with:
