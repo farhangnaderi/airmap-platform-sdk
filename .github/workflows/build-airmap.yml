@@ -32,7 +32,7 @@ jobs:
           name: macos-xcode-10.0.0-artifacts
           path: build/staging
 
-  build-and-test-ubuntu-20.04-gcc:
+  build-and-test-ubuntu-gcc:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -61,7 +61,7 @@ jobs:
           name: ubuntu-20.04-gcc-artifacts
           path: build
 
-  build-and-test-ubuntu-20.04-clang:
+  build-and-test-ubuntu-clang:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
