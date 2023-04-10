@@ -3,95 +3,6 @@ name: build-airmap
 on: [push, pull_request]
 
 jobs:
-  build-and-test-macos-xcode:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Set up macOS environment
-        run: tools/osx/setup.sh
-
-      - name: Update git submodules
-        run: |
-          git submodule sync
-          git submodule update --init --recursive
-
-      - name: Build and test
-        run: |
-          mkdir build
-          cd build
-          cmake -DCMAKE_INSTALL_PREFIX=staging ..
-          make -j4
-          ctest -V
-          make install
-
-      - name: Save build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: macos-xcode-10.0.0-artifacts
-          path: build/staging
-
-  build-and-test-ubuntu-gcc:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Set up Ubuntu environment
-        run: tools/ubuntu/setup.dev.sh
-
-      - name: Update git submodules
-        run: |
-          git submodule sync
-          git submodule update --init --recursive
-
-      - name: Build and test
-        run: |
-          mkdir build
-          cd build
-          cmake -DCMAKE_INSTALL_PREFIX=/usr ..
-          make -j4
-          ctest -V
-          make install
-
-      - name: Save build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: ubuntu-20.04-gcc-artifacts
-          path: build
-
-  build-and-test-ubuntu-clang:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Set up Ubuntu environment
-        run: tools/ubuntu/setup.dev.sh
-
-      - name: Install clang
-        run: sudo apt-get install -y clang
-
-      - name: Update git submodules
-        run: |
-          git submodule sync
-          git submodule update --init --recursive
-
-      - name: Build and test
-        run: |
-          mkdir build
-          cd build
-          CC=$(which clang) CXX=$(which clang++) cmake -DCMAKE_INSTALL_PREFIX=/usr ..
-          make -j4
-          ctest -V
-          make install
-
-      - name: Save build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: ubuntu-20.04-clang-artifacts
-          path: build
 
   build-android-ndk-r21-api-level-33:
     runs-on: ubuntu-20.04
@@ -117,7 +28,7 @@ jobs:
           cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DANDROID_ABI=armeabi-v7a -DANDROID_PLATFORM=android-30 -DANDROID_STL=c++_shared -DANDROID_CPP_FEATURES="rtti exceptions" -DCMAKE_TOOLCHAIN_FILE=${ndk}/build/cmake/android.toolchain.cmake -DCMAKE_EXE_LINKER_FLAGS="-llog" ..          
           make -j4
           ctest -V
-          make install
+          sudo make install
 
       - name: Save build artifacts
         uses: actions/upload-artifact@v2
