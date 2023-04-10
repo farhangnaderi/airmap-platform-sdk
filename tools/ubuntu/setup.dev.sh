@@ -19,4 +19,4 @@ sudo apt install -y \
   zlib1g-dev
 
 sudo apt purge -y --auto-remove cmake
-$HERE/../build.cmake.sh
+sudo $HERE/../build.cmake.sh
