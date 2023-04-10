@@ -109,10 +109,10 @@ jobs:
 
       - name: Build and test
         run: |
-          ndk=$(tools/android/download-ndk.sh android-ndk-r21 /tmp)
+          ndk=$(tools/android/download-ndk.sh android-ndk-r21d /tmp)
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DANDROID_ABI=armeabi-v7a -DANDROID_PLATFORM=android-33 -DANDROID_STL=c++_ -DANDROID_CPP_FEATURES="rtti exceptions" -DCMAKE_TOOLCHAIN_FILE=${ndk}/build/cmake/android.toolchain.cmake ..
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DANDROID_ABI=armeabi-v7a -DANDROID_PLATFORM=android-33 -DANDROID_STL=c++_shared -DANDROID_CPP_FEATURES="rtti exceptions" -DCMAKE_TOOLCHAIN_FILE=${ndk}/build/cmake/android.toolchain.cmake ..
           make -j4
           ctest -V
           make install
