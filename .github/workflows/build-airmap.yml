@@ -101,7 +101,8 @@ jobs:
       
       - name: Set up Ubuntu environment
         run: tools/ubuntu/setup.dev.sh
-
+             sudo apt-get install -y qt5-default qtbase5-dev
+             echo "Qt5_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt5" >> $GITHUB_ENV
       - name: Update git submodules
         run: |
           git submodule sync
