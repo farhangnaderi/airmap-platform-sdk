@@ -17,7 +17,7 @@ jobs:
           echo "Qt5_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt5" >> $GITHUB_ENV
           echo "CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Core" >> $GITHUB_ENV
           sudo cp /usr/lib/x86_64-linux-gnu/libQt5Core.so* /usr/lib/x86_64-linux-gnu/cmake/Qt5/
-          
+          sudo cp /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5/
       - name: Update git submodules
         run: |
           git submodule sync
