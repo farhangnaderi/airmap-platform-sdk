@@ -25,6 +25,8 @@ project(airmap
   LANGUAGES C CXX)
 
 add_definitions("-D_LIBCPP_ABI_UNSTABLE")
+set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/")
+set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/Qt5/")
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 add_definitions("-D_LIBCPP_ABI_UNSTABLE")
