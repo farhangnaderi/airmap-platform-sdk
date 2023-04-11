@@ -13,7 +13,7 @@ jobs:
       - name: Set up Ubuntu environment
         run: |
           sudo tools/ubuntu/setup.dev.sh
-          sudo apt-get install -y qt5-default qtbase5-dev lib64qt5help-devel libqt5core5a libqt5gui5 libqt5widgets5 libqt5svg5-dev qttools5-dev qttools5-dev-tools
+          sudo apt-get install -y qt5-default qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 libqt5svg5-dev qttools5-dev qttools5-dev-tools
           echo "Qt5_DIR=/usr/lib/x86_64-linux-gnu/cmake/Qt5" >> $GITHUB_ENV
           #echo "CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Core" >> $GITHUB_ENV
           #sudo cp /usr/lib/x86_64-linux-gnu/libQt5Core.so* /usr/lib/x86_64-linux-gnu/cmake/Qt5/
